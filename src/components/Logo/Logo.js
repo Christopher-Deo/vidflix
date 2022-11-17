@@ -7,6 +7,7 @@ const Logo = () => {
   return (
     <div>
       <img className="logo" id="logo" height="125px" 
+
         src={logo} alt="VidFlix Logo" />
     </div>
   )
