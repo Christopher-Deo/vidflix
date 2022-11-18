@@ -1,7 +1,6 @@
 import React from 'react'
 import Pagination from '@mui/material/Pagination';
-import { ThemeProvider } from '@mui/material';
-import { createTheme } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 
 

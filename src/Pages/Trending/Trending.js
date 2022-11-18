@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import MovieCard from "../../components/MovieCard/MovieCard"
 import BasicPagination from "../../components/Pagination/BasicPagination"
 import "./Trending.css"
-
+// import useGenre from '../../hooks/useGenre'
 
 
 const Trending = () => {
@@ -25,7 +25,7 @@ const Trending = () => {
 
   return (
     <div className='page'>
-      <span className='pageTitle'><h1>Trending Today</h1></span>
+      <span className='pageTitle'>Trending Today</span>
       <div className='trending'>
         {content && content.map((c) => (<MovieCard
           key={c.id}

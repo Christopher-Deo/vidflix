@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Genres from "../../components/Genres/Genres";
-import CustomPagination from "../../components/Pagination/BasicPagination";
+import BasicPagination from "../../components/Pagination/BasicPagination"
 import MovieCard from "../../components/MovieCard/MovieCard";
-// import useGenre from "../../hooks/useGenre";
-
+import useGenre from "../../hooks/useGenre";
 import axios from 'axios'
 
 
@@ -12,22 +11,56 @@ export const Movies = () => {
   const [genres, setGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [content, setContent] = useState([]);
-  const [numOfPages, setNumOfPages] = useState();
-    const genreforURL = useGenre(selectedGenres);
+  const [numberOfPages, setNumberOfPages] = useState();
+  const genreforURL = useGenre(selectedGenres);
   // console.log(selectedGenres);
   const fetchMovies = async () => {
     const { data } = await axios.get(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}`
+      `https://api.themoviedb.org/3/discover/movie?api_key=5a89cc49b8ba1aac42aba5e9e0f14705&&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${resultsPage}&with_genres=${genreforURL}`
     );
+    setContent(data.results);
+    setNumberOfPages(data.total_pages);
   };
-      
+
+  useEffect(() => {
+    window.scroll(0, 0);
+    fetchMovies();
+    
+  }, [genreforURL, resultsPage]);
+
   return (
     <div className='page'>
-      <span className='pageTitle'>
-        <h1 className="display-1">Movies</h1>
-      </span>
+      <span className="pageTitle">Discover Movies</span>
+      <Genres
+        type="movie"
+        selectedGenres={selectedGenres}
+        setSelectedGenres={setSelectedGenres}
+        genres={genres}
+        setGenres={setGenres}
+        setResultsPage={setResultsPage}
+      />
+      <div className="trending">
+        {content &&
+          content.map((c) => (
+            <MovieCard
+              key={c.id}
+              id={c.id}
+              poster={c.poster_path}
+              title={c.title || c.name}
+              date={c.first_air_date || c.release_date}
+              mediaType="movie"
+              voteAverage={c.vote_average}
+            />
+          ))}
+      </div>
+      {numberOfPages > 1 && (
+        <BasicPagination setResultsPage={setResultsPage} numberOfPages={numberOfPages} />
+      )}
     </div>
-  )
-}
+  );
+};
 
+export default Movies;
+
+  
 
