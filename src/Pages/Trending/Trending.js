@@ -1,9 +1,9 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import MovieCard from "../../components/MovieCard/MovieCard"
 import BasicPagination from "../../components/Pagination/BasicPagination"
 import "./Trending.css"
-// import useGenre from '../../hooks/useGenre'
+
 
 
 const Trending = () => {
@@ -21,6 +21,7 @@ const Trending = () => {
   useEffect(() => {
     window.scroll(0, 0);
     fetchTrending()
+    // eslint-disable-next-line
   }, [resultsPage])
 
   return (
@@ -32,7 +33,7 @@ const Trending = () => {
           id={c.id}
           poster={c.poster_path}
           title={c.title || c.name}
-          data={c.first_air_date || c.release_date}
+          date={c.first_air_date || c.release_date}
           mediaType={c.media_type}
           voteAverage={c.vote_average}
         />))}

@@ -1,27 +1,22 @@
 import React from 'react'
 import "./MovieCard.css"
-import { smallPlaceholder, unavailable } from "../../config/config";
 import Badge from '@mui/material/Badge';
 // import ContentModal from "../ContentModal/ContentModal";
 
-const MovieCard = ({
-  id,
-  poster,
-  title,
-  date,
-  mediaType,
-  voteAverage,
-  }) => {
+const MovieCard = (props) => {
+const posterImage =  'https://www.themoviedb.org/t/p/w94_and_h141_bestv2'+ props.poster;
   return (
     <div className='media'>
-      <Badge badgeContent={voteAverage}
-        color={voteAverage > 6 ? 'primary' : 'secondary'} />
-      <img className='poster' src={poster? `${smallPlaceholder} / ${poster} `: unavailable } alt={title} />
-      <b className="title">{title}</b>
-      <span className='subTitle'>
-        {mediaType === "tv" ? "TV Series" : "Movie"}
+      <Badge badgeContent={props.voteAverage}
+        color={props.voteAverage > 6 ? 'primary' : 'secondary'} />
+      <img className='poster' src={posterImage} alt={props.title} />
+      <b className="title">{props.title}</b>
+     <div className="subTitle">
+      <span>
+        {props.mediaType === "tv" ? "TV Series" : "Movie"}
       </span>
-      <span className='subTitle'>{date}</span>
+        <span>{props.date}</span>
+        </div>
     </div>
   )
 }

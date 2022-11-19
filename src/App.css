@@ -15,7 +15,9 @@
   }
 }
 .page{
-  margin-top: 144px;
+  /* margin-top: 144px; */
+  padding-bottom: 85px;
+  padding-top: 150px;
 }
 
 .pageTitle{

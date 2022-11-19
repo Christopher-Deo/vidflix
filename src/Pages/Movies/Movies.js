@@ -6,7 +6,7 @@ import useGenre from "../../hooks/useGenre";
 import axios from 'axios'
 
 
-export const Movies = () => {
+export const Movies = (props) => {
   const [resultsPage, setResultsPage] = useState(1);
   const [genres, setGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState([]);
@@ -25,7 +25,7 @@ export const Movies = () => {
   useEffect(() => {
     window.scroll(0, 0);
     fetchMovies();
-    
+    // eslint-disable-next-line
   }, [genreforURL, resultsPage]);
 
   return (

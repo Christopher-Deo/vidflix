@@ -11,4 +11,5 @@
     bottom: 0;
     position: fixed;
     box-shadow: 0px -1px 5px whitesmoke;
+    z-index: 1;
 }

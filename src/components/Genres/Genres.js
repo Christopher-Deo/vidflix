@@ -41,7 +41,8 @@ const Genres = ({
         fetchGenres();
               return () => {
              // setGenres({}); //resets the genres to an empty object a.k.a. unmounted
-             }
+              }
+        // eslint-disable-next-line
     }, []);
 
 console.log('genres array = ',genres);

@@ -1,5 +1,5 @@
 //image sizes for tmdb
-export const smallPlaceholder = "https://image.tmdb.org/t/p/w300/8uO0gUM8aNqYLs1OsTBQiXu0fEv.jpg"; //300px height
+export const smallPlaceholder = "https://www.themoviedb.org/t/p/w300/8uO0gUM8aNqYLs1OsTBQiXu0fEv.jpg"; //300px height
 export const largePlaceholder = "https://image.tmdb.org/t/p/w500/8uO0gUM8aNqYLs1OsTBQiXu0fEv.jpg"; //500px height
 
 // contentModal and singleContent
