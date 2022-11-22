@@ -69,9 +69,9 @@ console.log('genres array = ',genres);
                     label={genre.name}
                     style={{
                         margin: 2,
-                        // backgroundColor: 'whitesmoke',
+                        backgroundColor: 'whitesmoke',
                     }}
-                    // color="white"
+                    
                     size='small'
                     key={genre.id}
                     clickable

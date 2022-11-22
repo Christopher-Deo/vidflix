@@ -1,16 +1,21 @@
+// ============ React imports ============
 import React, { useEffect, useState } from "react";
+// ============ Axios import =============
+import axios from "axios";
+//=============== Material UI imports =================
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import SearchIcon from '@mui/icons-material/Search';
-import axios from "axios";
+//=============== internal component imports =================
 import BasicPagination from "../../components/Pagination/BasicPagination";
 import MovieCard from "../../components/MovieCard/MovieCard";
+//=============== internal component dependencies =================
 import "./Search.css";
 
-const Search = (props) => {
+const Search = () => {
   const [type, setType] = useState(0);
   const [searchText, setSearchText] = useState("");
   const [resultsPage, setResultsPage] = useState(1);
@@ -26,11 +31,15 @@ const Search = (props) => {
     },
   });
 
-  const fetchSearch = async () => {
+  const handleTabChange = (event, newValue) => {
+    setType(newValue);
+    setResultsPage(1);
+  };
+
+  
+  const fetchSearch = async (props) => {
     try {
-      const endpoint = `https://api.themoviedb.org/3/search/${type}?
-        api_key=5a89cc49b8ba1aac42aba5e9e0f14705&language=en-US
-        &query=${searchText}&page=${resultsPage}&include_adult=false`
+      const endpoint = `https://api.themoviedb.org/3/search/${type ? "tv" : "movie"}?api_key=5a89cc49b8ba1aac42aba5e9e0f14705&language=en-US&query=${searchText}&page=${resultsPage}&include_adult=false`
       console.log(endpoint)
       const { data } = await axios.get(
         endpoint
@@ -38,7 +47,6 @@ const Search = (props) => {
       setContent(data.results);
       setNumberOfPages(data.total_pages);
     } catch (error) {
-      // console.log('Error message returned from search api call ', error);
       console.error(error);
     }
   };
@@ -65,13 +73,11 @@ const Search = (props) => {
           <Tabs
             value={type}
             indicatorColor="primary"
-            textColor="white"
-            onChange={(event, newValue) => {
-              setType(newValue);
-              setResultsPage(1);
-            }}
+            textColor="primary"
+            onChange={handleTabChange }
             aria-label="Search Tabs"
           >
+            
             {/* movie selection  tab   */}
             <Tab style={{ width: '25%' }} label="Movies" aria-label="Search Movies" />
             {/* tv selection tab */}
@@ -94,18 +100,18 @@ const Search = (props) => {
           }} >
       {/* ========= search text field component =========   */}
           <TextField
-            style={{ flex: 1 }}
+            style={{ flex: 1, backgroundColor: 'white', borderRadius: '5px' }}
             className="searchBox"
             label="Search"
             variant="filled"
-            onChange={((e) => setSearchText(e.target.value))}
+            onChange={(e) => setSearchText(e.target.value)}
           />
       {/* ========= search button component =============   */}
           <Button
             variant="contained"
             style={{
               marginLeft: 10,
-              color: 'secondary',
+              padding: '10px 20px',
             }}
           onClick={fetchSearch}>
       {/* =========== search icon component =============== */}
@@ -137,11 +143,7 @@ const Search = (props) => {
     </div>
   );
 };
-    
-                
-        
-
-
+              
 export default Search;
           
 

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import Genres from "../../components/Genres/Genres";
 import BasicPagination from "../../components/Pagination/BasicPagination"
 import MovieCard from "../../components/MovieCard/MovieCard";
 import useGenre from "../../hooks/useGenre";
-import axios from 'axios'
+
 
 
 export const Movies = (props) => {
