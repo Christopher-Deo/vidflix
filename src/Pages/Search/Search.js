@@ -10,7 +10,7 @@ import BasicPagination from "../../components/Pagination/BasicPagination";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import "./Search.css";
 
-const Search = () => {
+const Search = (props) => {
   const [type, setType] = useState(0);
   const [searchText, setSearchText] = useState("");
   const [resultsPage, setResultsPage] = useState(1);
@@ -28,15 +28,18 @@ const Search = () => {
 
   const fetchSearch = async () => {
     try {
-      const { data } = await axios.get(
-        `https://api.themoviedb.org/3/search/${type ? "tv" : "movie"}?
+      const endpoint = `https://api.themoviedb.org/3/search/${type}?
         api_key=5a89cc49b8ba1aac42aba5e9e0f14705&language=en-US
         &query=${searchText}&page=${resultsPage}&include_adult=false`
+      console.log(endpoint)
+      const { data } = await axios.get(
+        endpoint
       );
       setContent(data.results);
       setNumberOfPages(data.total_pages);
     } catch (error) {
-      console.log('Error message returned from search api call ', error);
+      // console.log('Error message returned from search api call ', error);
+      console.error(error);
     }
   };
 
@@ -62,7 +65,7 @@ const Search = () => {
           <Tabs
             value={type}
             indicatorColor="primary"
-            textColor="primary"
+            textColor="white"
             onChange={(event, newValue) => {
               setType(newValue);
               setResultsPage(1);
@@ -76,7 +79,7 @@ const Search = () => {
             {/* cast selection tab */}
             {/* <Tab style={{ width: '25%' }} label="Actor"  aria-label="Search Actors"/> */}
             {/* genre selection tab */}
-            {/* <Tab style={{ width: '25%' }} label="Genre" aria-label="Search Genres"/> */}
+            {/* <Tab style={{ width: '25%' }} label="Genre" aria-label="Search Genres"/> */} 
           </Tabs>
         </div>
 
@@ -104,7 +107,7 @@ const Search = () => {
               marginLeft: 10,
               color: 'secondary',
             }}
-          onClick={ fetchSearch()}>
+          onClick={fetchSearch}>
       {/* =========== search icon component =============== */}
             <SearchIcon />
           </Button>
