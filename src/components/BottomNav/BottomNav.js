@@ -31,7 +31,7 @@ export default function BottomNav() {
             
             <BottomNavigation
                 className='bottom-nav'
-                style={{ backgroundColor: '#2d313a' }}
+                style={{ backgroundColor: '#0A0908' }}
                 showLabels
                 value={value}
                 onChange={(event, newValue) => {

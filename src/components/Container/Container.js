@@ -9,7 +9,8 @@ export default function FixedContainer() {
             <CssBaseline />
             <Container fixed>
                 <Box sx={{
-                    bgcolor: '#39445a',
+                    // bgcolor: '#39445a',
+                    backgroundImage: 'url(./assets/images/movies background.jpg)',
                     height: '100vh',
                     width: '100%',
                 }} />

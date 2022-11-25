@@ -3,17 +3,20 @@
    flex-direction: column;
    width: 200px;
    padding: 5px;
-   margin: 5px 0;
-   background-color: #282c34;
+   margin: 10px 0;
+   background-color: #C6AC8F;
    border-radius: 10px;
    position: relative;
    font-family: "Montserrat", sans-serif;
-   color:whitesmoke;
+   border: 2px solid #EAE0D5;
+   
+   color:#22333B;
 }
 
 .media:hover{
- background-color: whitesmoke;
- color: black;  
+ background-color: #EAE0D5;
+ color: black; 
+ border: 2px solid #5E503F;
 }
 
 @media (max-width: 550px) {
@@ -25,6 +28,8 @@
 
 .poster{
     border-radius: 10px;
+    border: 2px solid #EAE0D5;
+   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .title{

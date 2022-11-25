@@ -1,13 +1,15 @@
 import React from 'react'
 import Badge from '@mui/material/Badge';
-// import ContentModal from '../ContentModal/ContentModal';
+import Review from '../Review/Review';
+
+import ContentModal from '../ContentModal/ContentModal';
 import "./MovieCard.css"
 
 const MovieCard = (props) => {
 const posterImage =  'https://www.themoviedb.org/t/p/w94_and_h141_bestv2'+ props.poster;
   return (
     
-    <div className='media'>
+    <ContentModal className='media'>
       <Badge badgeContent={props.voteAverage}
         color={props.voteAverage > 6? 'primary' : 'secondary'} />
       <img className='poster' src={posterImage} alt={props.title} />
@@ -17,8 +19,11 @@ const posterImage =  'https://www.themoviedb.org/t/p/w94_and_h141_bestv2'+ props
         {props.mediaType === "tv" ? "TV Series" : "Movie"}
       </span>
         <span>{props.date}</span>
-        </div>
       </div>
+      <div className="stars">
+        <Review />
+      </div>
+      </ContentModal>
     
   )
 }

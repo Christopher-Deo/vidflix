@@ -133,14 +133,14 @@ const Search = () => {
             />
           ))}
         {searchText &&
-          !content && (
-          <h2>No Results Found</h2>
-          )}
+          !content &&
+          (type ? <h2>No Series Found</h2> : <h2>No Movies Found</h2>)}
+      </div>
      {/* ==================== Pagination Component ============ */}
           <BasicPagination setResultsPage={setResultsPage} numberOfPages={numberOfPages} />
              
       </div>
-    </div>
+  
   );
 };
               
