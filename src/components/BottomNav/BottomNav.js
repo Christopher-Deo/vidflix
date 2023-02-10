@@ -1,64 +1,69 @@
-import React, {useEffect, useState} from 'react';
-import Box from '@mui/material/Box';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import WhatshotIcon from '@mui/icons-material/Whatshot';
-import MovieIcon from '@mui/icons-material/Movie';
-import TvIcon from '@mui/icons-material/Tv';
-import SearchIcon from '@mui/icons-material/Search';
-import { useNavigate } from 'react-router-dom';
-import "./BottomNav.css";
+import React, { useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import BottomNavigation from "@material-ui/core/BottomNavigation";
+import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
+import TvIcon from "@material-ui/icons/Tv";
+import MovieIcon from "@material-ui/icons/Movie";
+import SearchIcon from "@material-ui/icons/Search";
+import WhatshotIcon from "@material-ui/icons/Whatshot";
+import { useHistory } from "react-router-dom";
 
+const useStyles = makeStyles({
+    root: {
+        width: "100%",
+        position: "fixed",
+        bottom: 0,
+        backgroundColor: "#2d313a",
+        zIndex: 100,
+    },
+});
 
-export default function BottomNav() {
-    const [value, setValue] = useState(0);
-    const history = useNavigate()
-    
+export default function SimpleBottomNavigation() {
+    const classes = useStyles();
+    const [value, setValue] = React.useState(0);
+    const history = useHistory();
+
     useEffect(() => {
-        if (value === 0) history('/');
-        else if (value === 1) history('/movies');
-        else if (value === 2) history('/series');
-        else if (value === 3) history('/search');
-    }, [value, history]
-    )
+        if (value === 0) {
+            history.push("/");
+        } else if (value === 1) {
+            history.push("/movies");
+        } else if (value === 2) {
+            history.push("/series");
+        } else if (value === 3) {
+            history.push("/search");
+        }
+    }, [value, history]);
 
     return (
-        <Box sx={{
-            width: '100%',
-            position: 'fixed',
-            zIndex: 100,
-        }}>
-            
-            <BottomNavigation
-                className='bottom-nav'
-                style={{ backgroundColor: '#0A0908' }}
-                showLabels
-                value={value}
-                onChange={(event, newValue) => {
-                    setValue(newValue);
-                }}
-                >
-                    
-                    
-                <BottomNavigationAction
-                    style={{ color: 'whitesmoke' }}
-                    label="Trending" icon={<WhatshotIcon />} />
-
-                <BottomNavigationAction
-                    style={{ color: 'whitesmoke' }}
-                    label="Movies" icon={<MovieIcon />} />
-
-                <BottomNavigationAction
-                    style={{
-                        color: 'whitesmoke'
-                    }}
-                    label="TV Series" icon={<TvIcon />} />
-
-                <BottomNavigationAction
-                    style={{ color: 'whitesmoke' }}
-                    label="Search" icon={<SearchIcon />} />
-            </BottomNavigation>
-        </Box>
+        <BottomNavigation
+            value={value}
+            onChange={(event, newValue) => {
+                setValue(newValue);
+            }}
+            showLabels
+            className={classes.root}
+        >
+            <BottomNavigationAction
+                style={{ color: "white" }}
+                label="Trending"
+                icon={<WhatshotIcon />}
+            />
+            <BottomNavigationAction
+                style={{ color: "white" }}
+                label="Movies"
+                icon={<MovieIcon />}
+            />
+            <BottomNavigationAction
+                style={{ color: "white" }}
+                label="TV Series"
+                icon={<TvIcon />}
+            />
+            <BottomNavigationAction
+                style={{ color: "white" }}
+                label="Search"
+                icon={<SearchIcon />}
+            />
+        </BottomNavigation>
     );
 }
-

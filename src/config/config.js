@@ -1,8 +1,8 @@
 //image sizes for tmdb
 export const img_300 = "https://www.themoviedb.org/t/p/w300/8uO0gUM8aNqYLs1OsTBQiXu0fEv.jpg"; //300px height
-export const img_500 = "https://image.tmdb.org/t/p/w500/8uO0gUM8aNqYLs1OsTBQiXu0fEv.jpg"; //500px height
+export const img_500 = "https://image.tmdb.org/t/p/w94_and_h141_bestv2"; //500px height
 
-// contentModal and singleContent
+// ContentModal and MovieCard
 export const unavailable =
     "https://www.movienewz.com/img/films/poster-holder.jpg";
 

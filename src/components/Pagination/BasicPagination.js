@@ -1,43 +1,43 @@
-import React from 'react'
-import Pagination from '@mui/material/Pagination';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Stack from '@mui/material/Stack';
+import React from 'react';
+import Pagination from "@material-ui/lab/Pagination";
+import { createTheme, ThemeProvider } from "@material-ui/core";
+
 
 
 // creating a custom dark theme for the pagination component
 const darkTheme = createTheme({
     palette: {
-        type: 'dark',   
+        type: 'dark',
     },
 });
 
-const BasicPagination = ({ setResultsPage, numberOfPages=20}) => {
-    
+const BasicPagination = ({ setResultsPage, numberOfPages = 20 }) => {
+
     const handlePageChange = (resultsPage) => {
         setResultsPage(resultsPage);
         console.log(resultsPage);
         window.scroll(0, 0);
-    }
+    };
 
     return (
         <div
-        style={{
+            style={{
                 width: '100%',
                 display: 'flex',
                 justifyContent: 'center',
                 marginTop: 10,
                 paddingBottom: 10,
-        }}
-        >
-            <Stack spacing={2}>
+            }}
+>
             <ThemeProvider theme={darkTheme}>
                 <Pagination
                     onChange={(e) => handlePageChange(e.target.textContent)}
                     count={numberOfPages}
-                    color = 'primary' />
+                    color='primary'
+                   
+                />
             </ThemeProvider>
-            </Stack>
-        </div>
-    )
-}
-export default BasicPagination
+      </div>
+    );
+};
+export default BasicPagination;
