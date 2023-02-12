@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import MovieCard from "../../components/MovieCard/MovieCard"
-import BasicPagination from "../../components/Pagination/BasicPagination"
-import "./Trending.css"
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import env from 'react-dotenv'
+import MovieCard from "../../components/MovieCard/MovieCard";
+import BasicPagination from "../../components/Pagination/BasicPagination";
+import "./Trending.css";
 
 
 
@@ -10,19 +11,19 @@ const Trending = () => {
   const [content, setContent] = useState([]);
   const [resultsPage, setResultsPage] = useState(1);
 
-  const fetchTrending = async () => {  
+  const fetchTrending = async () => {
     const { data } = await axios.get
       (`https://api.themoviedb.org/3/trending/all/day?api_key=5a89cc49b8ba1aac42aba5e9e0f14705&page=${resultsPage}`);
-    setContent(data.results); 
+    setContent(data.results);
     console.log('data = ', data);
     console.log("data.results = ", data.results);
-    }
-    
+  };
+
   useEffect(() => {
     window.scroll(0, 0);
-    fetchTrending()
+    fetchTrending();
     // eslint-disable-next-line
-  }, [resultsPage])
+  }, [resultsPage]);
 
   return (
     <div className='page'>
@@ -40,6 +41,6 @@ const Trending = () => {
       </div>
       < BasicPagination setResultsPage={setResultsPage} />
     </div>
-  )  
-} 
+  );
+};
 export default Trending;

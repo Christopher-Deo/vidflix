@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
+import ReactPlayer from "react-player";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
-import { Button } from "@material-ui/core";
+// import { Button } from "@material-ui/core";
 import axios from "axios";
 import {
     unavailableLandscape,
 } from "../../config/config";
 import "./ContentModal.css";
-
-import YouTubeIcon from "@material-ui/icons/YouTube";
+// import YouTubeIcon from "@material-ui/icons/YouTube";
 import Carousel from "../Carousel/Carousel";
 
 const useStyles = makeStyles((theme) => ({
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const ContentModal = ({ children, mediaType, id, poster }) => {
+const ContentModal = ({ children, mediaType, id, posterImage }) => {
 
     const classes = useStyles();
     // setting the state for the modal
@@ -45,7 +45,6 @@ const ContentModal = ({ children, mediaType, id, poster }) => {
     const [video, setVideo] = useState();
 
     //variables relating to movie poster images
-    const posterImage = "https://www.themoviedb.org/t/p/w94_and_h141_bestv2' + poster";
     const unavailable = "https://www.movienewz.com/img/films/poster-holder.jpg";
 
     //getting the movie data from the API
@@ -67,7 +66,7 @@ const ContentModal = ({ children, mediaType, id, poster }) => {
     useEffect(() => {
         fetchData();
         fetchVideo();
-    }, []);
+    });
 
 
     return (
@@ -99,7 +98,7 @@ const ContentModal = ({ children, mediaType, id, poster }) => {
                                 <img
                                     src={
                                         content.poster_path
-                                            ? `${posterImage}/${content.poster_path}`
+                                            ? `${posterImage}`
                                             : unavailable
                                     }
                                     alt={content.name || content.title}
@@ -108,7 +107,7 @@ const ContentModal = ({ children, mediaType, id, poster }) => {
                                 <img
                                     src={
                                         content.backdrop_path
-                                            ? `${posterImage}/${content.backdrop_path}`
+                                            ? `${posterImage}`
                                             : unavailableLandscape
                                     }
                                     alt={content.name || content.title}
@@ -131,20 +130,10 @@ const ContentModal = ({ children, mediaType, id, poster }) => {
                                     <span className="ContentModal__description">
                                         {content.overview}
                                     </span>
-
                                     <div>
-                                        <Carousel id={id} media_type={mediaType} />
+                                        <Carousel id={id} mediaType={mediaType} />
                                     </div>
-
-                                    <Button
-                                        variant="contained"
-                                        startIcon={<YouTubeIcon />}
-                                        color="secondary"
-                                        target="__blank"
-                                        href={`https://www.youtube.com/watch?v=${video}`}
-                                    >
-                                        Watch the Trailer
-                                    </Button>
+                                    <ReactPlayer controls width="480px" height="240px" url={`https://www.youtube.com/embed/${video}`} />
                                 </div>
                             </div>
                         </div>

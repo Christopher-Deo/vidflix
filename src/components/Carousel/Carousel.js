@@ -36,7 +36,7 @@ const Carousel = ({ id, mediaType }) => {
 
     const fetchCredits = async () => {
         const { data } = await axios.get(
-            `https://api.themoviedb.org/3/${mediaType}/${id}/credits?api_key=$5a89cc49b8ba1aac42aba5e9e0f14705&language=en-US`
+            `https://api.themoviedb.org/3/${mediaType}/${id}/credits?api_key=5a89cc49b8ba1aac42aba5e9e0f14705&language=en-US`
         );
         setCredits(data.cast);
     };
